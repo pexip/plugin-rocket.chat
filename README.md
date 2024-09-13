@@ -5,68 +5,28 @@ define the Rocket.Chat channel to be used in the conference URL. The plugin will
 open the Rocket.Chat channel in a new section inside the conference in the Web
 App 3.
 
-To enable the feature you have to define the Rocket.Chat URL in the `rid` query
-parameter.
-
-Example:
-https://pexipdemo.com/webapp3/m/general?rid=https://open.rocket.chat/channel/general
-
 ![Conference](./assets/conference.png)
 
-## Configure Pexip Infinity
+## Configure Pexip Infinity and Rocket.Chat
 
-To use this plugin, you need to configure Pexip Infinity to allow the Web App 3
-to access resources from the Rocket.Chat server. If you don't do this, you will
-see an error message in the Web App 3 when you try to use the plugin:
-
-```text
-Refused to frame 'https://open.rocket.chat/' because it violates the following Content Security Policy directive: "frame-src 'self' https://telemetryservice.firstpartyapps.oaspapps.com/telemetryservice/telemetryproxy.html https://*.microsoft.com https://*.office.com https://cdn.pexip.com/guff/ http://localhost:5173 https://localhost:5173".
-```
-
-To configure Pexip Infinity, you need to add the Rocket.Chat server to the list
-of allowed domains in the Content Security Policy (CSP) settings. You can do
-this by accessing the the Pexip Infinity Management Node and navigating to
-`Platform > Global Settings > Security`. In the `Content Security Policy`
-section, add the Rocket.Chat server to the `frame-src` directive. For example,
-if your Rocket.Chat server is running at `https://open.rocket.chat/`, you would
-add `https://open.rocket.chat/` to the `frame-src` directive.
-
-## Configure Rocket.Chat
-
-We need to configure Rocket.Chat to allow the Web App 3 to access the
-Rocket.Chat server. If you don't do this, you will see an error message in the
-Web App 3 when you try to use the plugin:
-
-```text
-Refused to display 'https://open.rocket.chat/' in a frame because it set 'X-Frame-Options' to 'sameorigin'.
-```
-
-Lets suppose that your Rocket.Chat server is running at
-`https://open.rocket.chat/`:
-
-- Open the general settings (`https://open.rocket.chat/admin/settings/General`)
-  in your browser.
-
-- Edit the `Options to X-Frame-Options` field and suppose that the Web App 3 is
-  running at `https://localhost:5173`:
-
-  ```text
-  ALLOW-FROM https://localhost:5173
-  ```
-
-## Run Rocket.Chat in a Docker container
-
-You can run Rocket.Chat in a Docker container for testing. To do this, you need
-Docker and Docker Compose installed on your machine. And run the following
-command:
-
-```bash
-$ docker-compose up
-```
-
-Now the Rocket.Chat app will be available at `http://localhost:3000`.
+To use this plugin, you need to configure Pexip Infinity and Rocket.Chat. You
+can get more information about how to configure both in the
+[Pexip Docs Portal](https://docs.pexip.com/admin/rocket_chat_intro.htm#persistent).
 
 ## Run for development
+
+Once the branding for development is deployed we need to configure some
+parameters:
+
+- Edit `vite.json` with your environment parameters. You only have to modify the
+  `infinityUrl` parameter with the URL of your Infinity deployment:
+
+```json
+{
+  "infinityUrl": "https://192.168.1.101",
+  ...
+}
+```
 
 - Install all the dependencies:
 
