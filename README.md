@@ -13,6 +13,26 @@ To use this plugin, you need to configure Pexip Infinity and Rocket.Chat. You
 can get more information about how to configure both in the
 [Pexip Docs Portal](https://docs.pexip.com/admin/rocket_chat_intro.htm#persistent).
 
+### Configuration requirements starting from Infinity v37
+
+The `id` of the plugin in the manifest should be `chat-engine-plugin` to support the new Widget concept.
+
+In addition, because of the tightened security in v37, `"sandboxValues": ["allow-same-origin"]` needs to be added to the plugin config in the manifest.
+
+Your manifest will now look something like the following.
+```
+{
+  ...
+  "plugins": [
+    {
+    	"id": "chat-engine-plugin",
+    	"src": "...",
+        "sandboxValues": ["allow-same-origin"]
+    }
+  ]
+}
+```
+
 ## Run for development
 
 Once the branding for development is deployed we need to configure some
