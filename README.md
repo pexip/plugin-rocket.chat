@@ -19,6 +19,8 @@ The `id` of the plugin in the manifest should be `chat-engine-plugin` to support
 
 In addition, because of the tightened security in v37, `"sandboxValues": ["allow-same-origin"]` needs to be added to the plugin config in the manifest.
 
+More information about the above change can be found here: https://developer.pexip.com/docs/infinity/web/plugins/webapp-3/sandbox-security
+
 Your manifest will now look something like the following.
 ```
 {
