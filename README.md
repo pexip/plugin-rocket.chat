@@ -17,7 +17,7 @@ can get more information about how to configure both in the
 
 The `id` of the plugin in the manifest should be `chat-engine-plugin` to support the new Widget concept.
 
-In addition, because of the tightened security in v37, `"sandboxValues": ["allow-same-origin"]` needs to be added to the plugin config in the manifest.
+In addition, because of the tightened security in v37, `"sandboxValues": ["allow-same-origin", "allow-forms"]` needs to be added to the plugin config in the manifest.
 
 More information about the above change can be found here: https://developer.pexip.com/docs/infinity/web/plugins/webapp-3/sandbox-security
 
