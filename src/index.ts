@@ -7,11 +7,10 @@ const urlParams = new URLSearchParams(window.parent.location.search)
 const rid = decodeURIComponent(urlParams.get('rid') ?? '')
 
 if (rid !== '') {
-  const id = 'chat-engine-plugin'
-  window.plugin.iframeManager.add({
-    id,
-    url: rid,
-    type: 'sidePanel'
+  const rocketChatWidget = await plugin.ui.addWidget({
+    type: 'sidePanel',
+    src: rid,
+    title: 'RocketChat'
   })
 
   const button = await plugin.ui.addButton({
@@ -20,9 +19,7 @@ if (rid !== '') {
     tooltip: 'Rocket Chat'
   })
 
-  button.onClick.add(() => {
-    void plugin.ui.togglePlugin({ id })
-  })
+  button.onClick.add(() => void rocketChatWidget.toggle())
 } else {
   console.log(
     'RC discussion link (rid) value not present, not loading the button'
